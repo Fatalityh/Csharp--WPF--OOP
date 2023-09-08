@@ -1,0 +1,113 @@
+﻿<Window x:Class="WPFFrontend.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFFrontend"
+        mc:Ignorable="d"
+        Title="Class Project" Height="630" Width="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="25" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <!-- First Zone -->
+        <TextBlock Grid.Column="1" Grid.Row="1" 
+                   Text="Games Information" FontSize="40" FontFamily="Blackadder ITC" Padding="10,0,10,0" />
+
+        <TextBox x:Name="search_textbox" Grid.Column="1" Grid.Row="2" Width="100" Height="30" Margin="2" />
+
+        <Button Name="btnSearchFile" Click="btnSearchGame_Click" Grid.Column="1" Grid.Row="3" Width="100" Height="30" Margin="6">Search</Button>
+
+        <DataGrid x:Name="dgGames" Grid.Column="1" Grid.Row="4" Grid.RowSpan="6" 
+                  xmlns:my="http://schemas.microsoft.com//wpf/2008/toolkit"
+                  CanUserAddRows="True"
+                  ItemsSource="{Binding}"
+                  AutoGenerateColumns="False" SelectionChanged="dgGames_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Game Id" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Category}"/>
+                <DataGridTextColumn Header="Grade" Binding="{Binding Path=Rating}"/>
+                <DataGridTemplateColumn Header="Edit Action">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Edit_Game_Button">Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Delete Action">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Delete_Game_Button">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <!-- Second Zone -->
+        <TextBlock Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1"
+                   Text="Change existing game" FontSize="19" FontFamily="Bahnschrift" Padding="20,35,20,0" />
+
+        <TextBlock Grid.Column="4" Grid.Row="3" Padding="5,20,5,20" 
+                   Text="GUID (ID):" />
+
+        <TextBlock x:Name="guid_textbox" Grid.Column="4" Grid.Row="3" Width="100" Height="30" Margin="6" />
+
+        <TextBlock Grid.Column="4" Grid.Row="4" Padding="5,20,5,20" 
+                   Text="* Name:" />
+
+        <TextBox x:Name="name_textbox" Grid.Column="4" Grid.Row="4" Width="100" Height="30" Margin="6" />
+
+
+        <TextBlock Grid.Column="4" Grid.Row="5" Padding="5,20,5,20" 
+                   Text="Category:" />
+
+        <TextBox x:Name="category_textbox" Grid.Column="4" Grid.Row="5" Width="100" Height="30" Margin="6" />
+
+
+        <TextBlock Grid.Column="4" Grid.Row="6" Padding="5,20,5,20"
+                   Text="Rating:" />
+
+        <TextBox x:Name="rating_textbox" Grid.Column="4" Grid.Row="6" Width="100" Height="30" Margin="6" />
+
+        <TextBlock Grid.Column="4" Grid.Row="7" Padding="5,20,5,20"
+                   Text="Picture:" />
+
+        <Image Name="Pic" Grid.Column="4" Grid.Row="7" Width="100" Height="60" Margin="6"/>
+
+        <Button Name="btnOpenFile" Click="btnOpenFile_Click" Grid.Column="4" Grid.Row="8" Width="100" Height="30" Margin="6">Open file</Button>
+
+        <Button Content="Create/Update Game" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" x:Name="save_btn"
+                Margin="35,61,35,4" FontFamily="Bell MT" FontSize="12" Background="White" FontWeight="Bold" Click="Update_Button_Click" />
+
+
+        <!-- Third Zone -->
+
+        <Button Content="Refresh List" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="3" x:Name="refresh_btn"
+                Margin="35,60,35,5" FontFamily="Bell MT" FontSize="14" Background="White" FontWeight="Bold" Click="Refresh_Button_Click" />
+
+    </Grid>
+</Window>
